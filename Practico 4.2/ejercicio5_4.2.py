@@ -30,5 +30,8 @@ def resta(num):
     print(num)
 
 
-numero = int(input("Ingrese un numero "))
-resta(numero)
+numero = int(input("Ingrese un numero positivo "))
+if numero > 0:
+    resta(numero)
+else:
+    print("ingreso un numero negativo o cero")
