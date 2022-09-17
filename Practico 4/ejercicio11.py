@@ -13,7 +13,7 @@ def mostrarHabitacion(numeroPuerta, array):
 
 
 casaRural = [["Habitacion", "Camas", "Planta"], ["1. Azul", "2", "Primera"], ["2. Roja", "1", "Primera"],
-             ["3. Verde", "3", "Segunda"], ["4. Rosa", "2", "Segunda"], ["5. Gris", "1", "Tercera"]]
+            ["3. Verde", "3", "Segunda"], ["4. Rosa", "2", "Segunda"], ["5. Gris", "1", "Tercera"]]
 
 usuario = input("1 - Listar Habitaciones \n2 - elegir habitacion \n3 - exit\n")
 while int(usuario) != 3:

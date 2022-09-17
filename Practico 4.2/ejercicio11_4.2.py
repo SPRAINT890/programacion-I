@@ -1,8 +1,8 @@
 """
 Escriba un programa para encontrar cuántas veces aparece un substring dado
-en el String de referencia. Por ejemplo, how_many(‘Montevideo’, ‘Universidad de
-Montevideo ubicada en Montevideo’) devuelve 2 (dado que hay 2 repeticiones
-de ‘Montevideo’ en String de referencia). Puede servir método count() y split().
+en el String de referencia. Por ejemplo, how_many('Montevideo', 'Universidad de
+Montevideo ubicada en Montevideo') devuelve 2 (dado que hay 2 repeticiones
+de 'Montevideo' en String de referencia). Puede servir método count() y split().
 """
 
 def how_many(palabra_a_buscar, frase):
