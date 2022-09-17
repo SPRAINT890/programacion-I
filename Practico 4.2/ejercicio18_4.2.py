@@ -24,7 +24,6 @@ def cont_año_bisiesto(num2, dif_num):
             cant_año_bisiesto += 1
         else:
             cant_año_natural += 1
-    print(str(cant_año_natural) + " " + str(cant_año_bisiesto))
     return cant_año_natural, cant_año_bisiesto
 
 def cont_meses(mes2, mes_año2, dif_mes):
