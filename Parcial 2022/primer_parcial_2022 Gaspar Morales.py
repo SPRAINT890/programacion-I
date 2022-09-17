@@ -1,18 +1,48 @@
 def registrar_gasto(gastos_alimentacion, gastos_transporte, gastos_vestimenta, dia, tipo, importe):
-    # Eliminar este comentario y colocar el código de la operación
+    if tipo == 1:
+        gastos_alimentacion[dia - 1] = gastos_alimentacion[dia - 1] + importe
+        
+    elif tipo == 2:
+        gastos_transporte[dia - 1] =gastos_transporte[dia - 1] + importe
+    
+    elif tipo == 3:
+        gastos_vestimenta[dia - 1] = gastos_vestimenta[dia - 1] + importe
     pass
 
 def calcular_gasto_promedio(gastos):
-    # Eliminar este comentario y colocar el código de la operación
-    return 0
+    contador = 0
+    suma = 0   
+    for i in gastos:
+        if i > 0:
+            contador += 1
+            suma = suma + i
+
+    return suma/contador
 
 def obtener_dias_con_gasto_promedio_acumulado_alto(gastos_alimentacion, gastos_transporte, gastos_vestimenta):
-    # Eliminar este comentario y colocar el código de la operación
-    return []
+    gasto_prom_alimentacion = calcular_gasto_promedio(gastos_alimentacion)
+    gasto_prom_transporte = calcular_gasto_promedio(gastos_transporte)
+    gasto_prom_vestimenta = calcular_gasto_promedio(gastos_vestimenta)
+    gastos_prom_aculado_alto = []
+    for i in range (30):
+        if gastos_alimentacion[i] > gasto_prom_alimentacion and gastos_transporte[i] > gasto_prom_transporte and gastos_vestimenta[i] > gasto_prom_vestimenta:
+            gastos_prom_aculado_alto.append(i + 1)
+    
+    return gastos_prom_aculado_alto
 
 def obtener_dia_de_semana_con_mayor_gasto(gastos_alimentacion, gastos_transporte, gastos_vestimenta):
-    # Eliminar este comentario y colocar el código de la operación
-    return 0
+    mayor_gasto = 0
+    dia = 0
+    for i in range (30):
+        gasto = 0
+        gasto = gastos_alimentacion[i] + gastos_transporte[i] + gastos_vestimenta[i]
+        if mayor_gasto < gasto:
+            mayor_gasto = gasto
+            dia_mayor = dia
+        dia += 1
+        if dia > 6:
+            dia = 0
+    return dia_mayor
 
 if __name__ == "__main__":
 
@@ -44,7 +74,7 @@ if __name__ == "__main__":
         print("Prueba 3 Ok")
     else:
         print("Prueba 3 Error", dias_gasto_promedio_alto)
-   
+
     dia_mayor_gasto = obtener_dia_de_semana_con_mayor_gasto(gastos_alimentacion, gastos_transporte, gastos_vestimenta)
 
     if dia_mayor_gasto == 1:
