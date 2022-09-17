@@ -56,21 +56,17 @@ def diferencia_num_dia(num1, num2, mes_año1, mes_año2, tipo):
         if num1 > num2:
             dif_num = num1 - num2
             if mes_año1 > mes_año2:
-                dif_mes_año = mes_año1 - mes_año2
                 dias_mes = cont_meses(num2, mes_año2, dif_num)
                 return dias_mes
             else:
-                dif_mes_año = mes_año2 - mes_año1
                 dias_mes = cont_meses(num2, mes_año1, dif_num)
                 return dias_mes
         else:
             dif_num = num2 - num1
             if mes_año1 > mes_año2:
-                dif_mes_año = mes_año1 - mes_año2
                 dias_mes = cont_meses(num1, mes_año2, dif_num)
                 return dias_mes
             else:
-                dif_mes_año = mes_año2 - mes_año1
                 dias_mes = cont_meses(num1, mes_año1, dif_num)
                 return dias_mes
 
