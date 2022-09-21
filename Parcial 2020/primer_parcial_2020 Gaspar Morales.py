@@ -35,8 +35,30 @@ def sacar_alimentos_para_receta(heladera, receta):
     return True
 
 def alimentos_a_comprar_para_receta (heladera, receta, tabla_conversion_unidad):
-    
-    return []
+    requerido = []
+    for alimento_receta in receta:
+        hay_stock = False
+        for alimento_heladera in heladera:
+            if alimento_receta[0] == alimento_heladera[0]:
+                hay_stock = True
+                if alimento_receta[1] > alimento_heladera[1]:
+                    alimento_faltante = [alimento_receta[0], alimento_receta[1] - alimento_heladera[1]]
+                    requerido.append(alimento_faltante)
+                    break
+        if not hay_stock:
+            requerido.append(alimento_receta)
+    requerido_formateado = []
+    for alimento_tabla_conv_und in tabla_conversion_unidad:
+        for alimento_requerido in requerido:
+            if alimento_tabla_conv_und[0] == alimento_requerido[0]:
+                if alimento_tabla_conv_und[1] > alimento_requerido[1]:
+                    requerido_formateado.append([alimento_requerido[0],1])
+                else:
+                    if alimento_tabla_conv_und[1] % alimento_requerido[1] == 0:
+                        requerido_formateado.append([alimento_requerido[0], alimento_requerido[1] // alimento_tabla_conv_und[1]])
+                    else:
+                        requerido_formateado.append([alimento_requerido[0], (alimento_requerido[1] // alimento_tabla_conv_und[1]) + 1 ])
+    return requerido_formateado
 
 if __name__ == "__main__":
     # Pruebas
