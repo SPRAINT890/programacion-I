@@ -4,22 +4,26 @@ from functools import total_ordering
 def calcular_consumo_dia_franja(consumo_dia_esp, hora_inicio, hora_fin):
     total_consumo = 0
     for c in range(hora_inicio, hora_fin):
-        total_consumo += consumo_dia[c]
+        total_consumo += consumo_dia_esp[c]
     return total_consumo
 
 def calcular_gasto_dia(consumo_dia_esp, tipo_tarifa):
     total_gasto_dia = 0
     if tipo_tarifa == 1:
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 00, 23) * 6.47
+        print(tipo_tarifa)
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 00, 24) * 6.47
     elif tipo_tarifa == 2:
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 23, 16) * 3.453
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 17, 22) * 8.623
+        print(tipo_tarifa)
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 0, 17) * 3.453
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 22, 23) * 3.453
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 17, 23) * 8.623
     else:
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 00, 6) * 1.803
+        print(tipo_tarifa)
+        print(consumo_dia_esp)
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 0, 6) * 1.803
         total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 7, 16) * 4.676
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 23, 00) * 4.676
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 22, 23) * 4.676
         total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 17, 22) * 8.623
-        
     return total_gasto_dia
 
 def calcular_gasto_mensual(consumo_mensual, tipo_tarifa):
