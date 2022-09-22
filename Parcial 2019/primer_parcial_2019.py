@@ -10,28 +10,38 @@ def calcular_consumo_dia_franja(consumo_dia_esp, hora_inicio, hora_fin):
 def calcular_gasto_dia(consumo_dia_esp, tipo_tarifa):
     total_gasto_dia = 0
     if tipo_tarifa == 1:
-        print(tipo_tarifa)
         total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 00, 24) * 6.47
     elif tipo_tarifa == 2:
-        print(tipo_tarifa)
         total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 0, 17) * 3.453
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 22, 23) * 3.453
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 23, 24) * 3.453
         total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 17, 23) * 8.623
     else:
-        print(tipo_tarifa)
-        print(consumo_dia_esp)
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 0, 6) * 1.803
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 7, 16) * 4.676
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 22, 23) * 4.676
-        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 17, 22) * 8.623
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 0, 7) * 1.803
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 7, 17) * 4.676
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 23, 24) * 4.676
+        total_gasto_dia += calcular_consumo_dia_franja(consumo_dia_esp, 17, 23) * 8.623
     return total_gasto_dia
 
 def calcular_gasto_mensual(consumo_mensual, tipo_tarifa):
-    # Your Code HERE
-    return 0
+    total_gasto = 0 
+    for consumo_diario in consumo_mensual:
+        total_gasto += calcular_gasto_dia(consumo_diario, tipo_tarifa)
+    return total_gasto
 
 def franja_horario_mayor_consumo_mensual(consumo_mensual):
-    # Your Code HERE
+    consumo_en_franja_mes = []
+    print(consumo_mensual)
+    print("")
+    for consumo in consumo_mensual:
+        consumo_en_franja_dia = []
+        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 0, 4))
+        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 4, 8))
+        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 8, 12))
+        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 12, 16))
+        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 16, 20))
+        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 20, 24))
+        consumo_en_franja_mes.append(consumo_en_franja_dia)
+    print(consumo_en_franja_mes)
     return []
 
 if __name__ == "__main__":
