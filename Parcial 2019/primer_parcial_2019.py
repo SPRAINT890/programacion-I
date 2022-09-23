@@ -29,19 +29,23 @@ def calcular_gasto_mensual(consumo_mensual, tipo_tarifa):
     return total_gasto
 
 def franja_horario_mayor_consumo_mensual(consumo_mensual):
-    consumo_en_franja_mes = []
+    consumo_total_mes = []
     print(consumo_mensual)
     print("")
-    for consumo in consumo_mensual:
-        consumo_en_franja_dia = []
-        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 0, 4))
-        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 4, 8))
-        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 8, 12))
-        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 12, 16))
-        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 16, 20))
-        consumo_en_franja_dia.append(calcular_consumo_dia_franja(consumo, 20, 24))
-        consumo_en_franja_mes.append(consumo_en_franja_dia)
-    print(consumo_en_franja_mes)
+    consumo_mensual_t = []
+    for x in range(24):
+        matrix_x = []
+        for y in range(31):
+            matrix_x.append(consumo_mensual[y][x])
+        consumo_mensual_t.append(matrix_x)
+    
+    for hora_consumo in consumo_mensual_t:
+        consumo_total_mes.append(sum(hora_consumo))
+    print(consumo_total_mes)
+    consumo_max = 0
+    for hora in consumo_total_mes:
+        if hora > consumo_max:
+            consumo_max = hora
     return []
 
 if __name__ == "__main__":
