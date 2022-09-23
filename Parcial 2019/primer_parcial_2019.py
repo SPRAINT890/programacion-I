@@ -30,23 +30,25 @@ def calcular_gasto_mensual(consumo_mensual, tipo_tarifa):
 
 def franja_horario_mayor_consumo_mensual(consumo_mensual):
     consumo_total_mes = []
-    print(consumo_mensual)
-    print("")
+
+    #transpuesta de matriz
     consumo_mensual_t = []
     for x in range(24):
         matrix_x = []
         for y in range(31):
             matrix_x.append(consumo_mensual[y][x])
         consumo_mensual_t.append(matrix_x)
-    
+    #
     for hora_consumo in consumo_mensual_t:
         consumo_total_mes.append(sum(hora_consumo))
-    print(consumo_total_mes)
     consumo_max = 0
+    dia = 0
     for hora in consumo_total_mes:
         if hora > consumo_max:
             consumo_max = hora
-    return []
+            dia_max = dia
+        dia += 1
+    return [dia_max-1, dia_max+2]
 
 if __name__ == "__main__":
     # Set de pruebas básicos
