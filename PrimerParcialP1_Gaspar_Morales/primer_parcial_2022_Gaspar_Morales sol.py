@@ -89,9 +89,37 @@ def registrar_premios_a_actores_vivos(mat_actores, names_actores, awards_actores
 
 # Funciones de EJERCICIO D
 def desvincular_actores(mat_peliculas, mat_actores, apellidos_actores):
-    # Your Code HERE
-    # no me dio tiempo xd
-    pass
+    #verifico si existe el actor y guardo su posicion y sus datos completos en una matriz
+    posicion = []
+    actores_a_desvincular = []
+    for actor_a_desvincular in apellidos_actores:
+        contador = 1
+        existe_actor = False
+        for datos_actor in mat_actores:
+            if datos_actor[1] == actor_a_desvincular:
+                existe_actor = True
+                actores_a_desvincular.append(datos_actor)
+                posicion.append(contador)
+                break
+            contador += 1
+        if not existe_actor:
+            return -1
+        
+    #borro sus datos en la matriz mat_actores
+    for datos_actor_a_desvincular in actores_a_desvincular:
+        for datos_actor in mat_actores:
+            if datos_actor == datos_actor_a_desvincular:
+                mat_actores.remove(datos_actor_a_desvincular)
+    print("a")
+    for posicion_actor in posicion:
+        for datos_peli in mat_peliculas:
+            for posiciones_actores_en_peli in range(2, len(datos_peli)):
+                if datos_peli[posiciones_actores_en_peli] == posicion_actor:
+                    datos_peli.remove(posicion_actor)
+                    break
+            """if len(datos_peli) == 2:
+                mat_peliculas.remove(datos_peli)"""
+    return posicion[len(posicion)-1]
 
 
 if __name__ == "__main__":

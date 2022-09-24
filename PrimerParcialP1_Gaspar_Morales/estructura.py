@@ -1,6 +1,6 @@
 #mat_peliculas
 [['Godfather I and II', 1974, 1, 2, 3], 
- ['Star Wars A New Hope', 1977, 4, 5, 6],
+ ['Star Wars A New Hope', 1977, 4, 5, 6], 
  ['Star Trek Motion Picture', 1979, 7, 8], 
  ['The Irishman', 2019, 2, 3]]
 
@@ -14,11 +14,13 @@
  ['William', 'Shatner', 91, 7, True], 
  ['Leonard', 'Nimoy', 84, 11, False]]
 
-#names_peliculas
-['Star Wars Empire Strikes Back', 'Star Trek Wrath of Khan']
+#apellidos_actores
+['Kelley', 'Stiller', 'Downey']
+actores = []
+peliculas = []
 
-#names_actores
-['Billy Dee Williams', 'Walter Koenig']
 
-#edades_actores
-[85, 85]
+verificacion_desvinculo_1 = [ "William", "Shatner", 91, 7, True ] not in actores
+verificacion_desvinculo_2 = [ "Leonard", "Nimoy", 84, 11, False ] not in actores
+verificacion_desvinculo_3 = len(peliculas) == 4 and len(actores) == 6
+verificacion_desvinculo_4 = peliculas[2] == [ "Star Trek Motion Picture", 1979 ]
