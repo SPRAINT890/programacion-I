@@ -40,14 +40,15 @@ def asignar_actores_a_peliculas(mat_peliculas, mat_actores, names_peliculas, nam
             posicion.append(len(mat_actores))
             cant_actores_agregados += 1
     
-    #agrego actores a peliculas
-    contador = 0
-    for actor_a_agregar in actores_y_peliculas:
-        for datos_pelicula in mat_peliculas:
-            if datos_pelicula[0] == actor_a_agregar[3]:
-                datos_pelicula.append(posicion[contador])
-                break
-        contador += 1
+    #agrego actores a peliculas, si no se agrego un nuevo actor
+    if cant_actores_agregados != 0:
+        contador = 0
+        for actor_a_agregar in actores_y_peliculas:
+            for datos_pelicula in mat_peliculas:
+                if datos_pelicula[0] == actor_a_agregar[3]:
+                    datos_pelicula.append(posicion[contador])
+                    break
+            contador += 1
     return cant_actores_agregados
 
 # Funciones de EJERCICIO B
