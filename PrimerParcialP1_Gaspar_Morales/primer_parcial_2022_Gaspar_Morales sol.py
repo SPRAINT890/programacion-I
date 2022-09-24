@@ -5,6 +5,8 @@
 #####################################################
 
 # Funciones de EJERCICIO A
+
+
 def asignar_actores_a_peliculas(mat_peliculas, mat_actores, names_peliculas, names_actores, edades_actores):
     #matriz con toda la info de los actores a agregar para facilitarme
     actores_y_peliculas = []
@@ -117,9 +119,14 @@ def desvincular_actores(mat_peliculas, mat_actores, apellidos_actores):
             for posiciones_actores_en_peli in range(2, len(datos_peli)):
                 if datos_peli[posiciones_actores_en_peli] == posicion_actor[0]:
                     datos_peli.remove(posicion_actor[0])
-                    
                     posicion_actor[1] += 1
                     break
+    
+    for posicion_actor in posicion:
+        for datos_peli in mat_peliculas:
+            for cordenada_actores_en_peli_actualizado in range(2, len(datos_peli)):
+                if datos_peli[cordenada_actores_en_peli_actualizado] >= posicion_actor[0]:
+                    datos_peli[cordenada_actores_en_peli_actualizado] -= 1
     
     # busco el ultimo actor con mas participaciones en peliculas
     posicion_ultimo_actor_con_mas_actuaciones = [0, 0]
@@ -325,13 +332,7 @@ if __name__ == "__main__":
         verificacion_desvinculo_1 = [ "Al", "Pacino", 82, 7, True ] not in actores
         verificacion_desvinculo_2 = [ "Harrison", "Ford", 80, 10, True ] not in actores
         verificacion_desvinculo_3 = len(peliculas) == 4 and len(actores) == 4
-        verificacion_desvinculo_4 = ([ "Godfather I and II", 1974, 1, 2] in peliculas) and ([ "Star Wars A New Hope", 1977, 3, 4] in peliculas)
-        
-        print(verificacion_desvinculo_1)
-        print(verificacion_desvinculo_2)
-        print(verificacion_desvinculo_3)
-        print(verificacion_desvinculo_4)
-        
+        verificacion_desvinculo_4 = ([ "Godfather I and II", 1974, 1, 2] in peliculas) and ([ "Star Wars A New Hope", 1977, 3, 4] in peliculas)       
         if(verificacion_desvinculo_1 and verificacion_desvinculo_2 and verificacion_desvinculo_3 and verificacion_desvinculo_4):
             #print("Actor Mas Desvinculado:", respuesta_4c)
             print("Ejercicio D (Principal): OK")
