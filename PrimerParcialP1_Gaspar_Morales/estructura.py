@@ -20,7 +20,7 @@ actores = []
 peliculas = []
 
 
-verificacion_desvinculo_1 = [ "William", "Shatner", 91, 7, True ] not in actores
-verificacion_desvinculo_2 = [ "Leonard", "Nimoy", 84, 11, False ] not in actores
-verificacion_desvinculo_3 = len(peliculas) == 4 and len(actores) == 6
-verificacion_desvinculo_4 = peliculas[2] == [ "Star Trek Motion Picture", 1979 ]
+verificacion_desvinculo_1 = [ "Al", "Pacino", 82, 7, True ] not in actores
+verificacion_desvinculo_2 = [ "Harrison", "Ford", 80, 10, True ] not in actores
+verificacion_desvinculo_3 = len(peliculas) == 4 and len(actores) == 4
+verificacion_desvinculo_4 = ([ "Godfather I and II", 1974, 1, 2] in peliculas) and ([ "Star Wars A New Hope", 1977, 3, 4] in peliculas)

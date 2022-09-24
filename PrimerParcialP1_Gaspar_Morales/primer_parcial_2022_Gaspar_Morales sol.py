@@ -99,7 +99,7 @@ def desvincular_actores(mat_peliculas, mat_actores, apellidos_actores):
             if datos_actor[1] == actor_a_desvincular:
                 existe_actor = True
                 actores_a_desvincular.append(datos_actor)
-                posicion.append(contador)
+                posicion.append([contador, 0])
                 break
             contador += 1
         if not existe_actor:
@@ -110,16 +110,24 @@ def desvincular_actores(mat_peliculas, mat_actores, apellidos_actores):
         for datos_actor in mat_actores:
             if datos_actor == datos_actor_a_desvincular:
                 mat_actores.remove(datos_actor_a_desvincular)
-    print("a")
+    
+    #borro la posicion del actor en las peliculas, y le voy sumando la cantidad de peliculas en las que actua
     for posicion_actor in posicion:
         for datos_peli in mat_peliculas:
             for posiciones_actores_en_peli in range(2, len(datos_peli)):
-                if datos_peli[posiciones_actores_en_peli] == posicion_actor:
-                    datos_peli.remove(posicion_actor)
+                if datos_peli[posiciones_actores_en_peli] == posicion_actor[0]:
+                    datos_peli.remove(posicion_actor[0])
+                    
+                    posicion_actor[1] += 1
                     break
-            """if len(datos_peli) == 2:
-                mat_peliculas.remove(datos_peli)"""
-    return posicion[len(posicion)-1]
+    
+    # busco el ultimo actor con mas participaciones en peliculas
+    posicion_ultimo_actor_con_mas_actuaciones = [0, 0]
+    for actor in posicion:
+        if actor[1] >= posicion_ultimo_actor_con_mas_actuaciones[1]:
+            posicion_ultimo_actor_con_mas_actuaciones = actor
+    
+    return posicion_ultimo_actor_con_mas_actuaciones[0]
 
 
 if __name__ == "__main__":
@@ -318,6 +326,12 @@ if __name__ == "__main__":
         verificacion_desvinculo_2 = [ "Harrison", "Ford", 80, 10, True ] not in actores
         verificacion_desvinculo_3 = len(peliculas) == 4 and len(actores) == 4
         verificacion_desvinculo_4 = ([ "Godfather I and II", 1974, 1, 2] in peliculas) and ([ "Star Wars A New Hope", 1977, 3, 4] in peliculas)
+        
+        print(verificacion_desvinculo_1)
+        print(verificacion_desvinculo_2)
+        print(verificacion_desvinculo_3)
+        print(verificacion_desvinculo_4)
+        
         if(verificacion_desvinculo_1 and verificacion_desvinculo_2 and verificacion_desvinculo_3 and verificacion_desvinculo_4):
             #print("Actor Mas Desvinculado:", respuesta_4c)
             print("Ejercicio D (Principal): OK")
