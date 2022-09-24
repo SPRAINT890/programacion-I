@@ -6,45 +6,49 @@
 
 # Funciones de EJERCICIO A
 def asignar_actores_a_peliculas(mat_peliculas, mat_actores, names_peliculas, names_actores, edades_actores):
-    
     #matriz con toda la info de los actores a agregar para facilitarme
     actores_y_peliculas = []
-    actores_agregados = 0
     for x in range(len(names_actores)):
-        nombre = names_actores[x].split(" ", 1)
-        actores_y_peliculas.append([nombre[0], nombre[1], edades_actores[x], names_peliculas[x]]) 
+        nombre_y_apellido = names_actores[x].split(" ", 1)
+        actores_y_peliculas.append([nombre_y_apellido[0], nombre_y_apellido[1], edades_actores[x], names_peliculas[x]])
     
+    
+    #comprobar si existe las peliculas
+    for peli in names_peliculas:
+        existe_peli = False
+        for datos_pelicula in mat_peliculas:
+            if datos_pelicula[0] == peli:
+                existe_peli = True
+                break
+        if not existe_peli:
+            return -1
+        
+    #agrego nuevos actores, consigo su posicion en la matriz y cuento los actores agregados
+    posicion = []
+    cant_actores_agregados = 0
     for actor_a_agregar in actores_y_peliculas:
+        contador = 0
         existe_actor = False
-        for dic_actores in mat_actores:
-            if dic_actores[0] == actor_a_agregar[0]:
+        for datos_actor in mat_actores:
+            contador += 1
+            if datos_actor[0] == actor_a_agregar[0] and datos_actor[1] == actor_a_agregar[1] and datos_actor[2] == actor_a_agregar[2]:
                 existe_actor = True
+                posicion.append(contador)
+                break
         if not existe_actor:
             mat_actores.append([actor_a_agregar[0], actor_a_agregar[1], actor_a_agregar[2], 0, True])
-            actores_agregados += 1
-
-    posicion = []
-    for actor_a_agregar in actores_y_peliculas:
-        contador = 1
-        for dic_actores in mat_actores:
-            if actor_a_agregar[0] == dic_actores[0] and actor_a_agregar[1] == dic_actores[1]:
-                posicion.append(contador)
-            else:
-                contador += 1
+            posicion.append(len(mat_actores))
+            cant_actores_agregados += 1
+    
+    #agrego actores a peliculas
     contador = 0
-    existe_pelicula = False
     for actor_a_agregar in actores_y_peliculas:
-        for pelicula in mat_peliculas:
-            if pelicula[0] == actor_a_agregar[3]:
-                pelicula.append(posicion[contador])
-                existe_pelicula = True
+        for datos_pelicula in mat_peliculas:
+            if datos_pelicula[0] == actor_a_agregar[3]:
+                datos_pelicula.append(posicion[contador])
                 break
-        if existe_pelicula:
-            existe_pelicula = False
-        else:
-            return -1
         contador += 1
-    return actores_agregados
+    return cant_actores_agregados
 
 # Funciones de EJERCICIO B
 def restringir_peliculas_en_years(mat_peliculas, year_comienzo, year_final):
