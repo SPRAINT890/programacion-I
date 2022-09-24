@@ -23,9 +23,13 @@ def calcular_gasto_dia(consumo_dia_esp, tipo_tarifa):
     return total_gasto_dia
 
 def calcular_gasto_mensual(consumo_mensual, tipo_tarifa):
-    total_gasto = 0 
+    total_gasto = new_func() 
     for consumo_diario in consumo_mensual:
         total_gasto += calcular_gasto_dia(consumo_diario, tipo_tarifa)
+    return total_gasto
+
+def new_func():
+    total_gasto = 0
     return total_gasto
 
 def franja_horario_mayor_consumo_mensual(consumo_mensual):
