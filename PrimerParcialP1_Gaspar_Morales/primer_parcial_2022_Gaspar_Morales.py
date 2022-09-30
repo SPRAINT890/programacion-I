@@ -95,7 +95,7 @@ def registrar_premios_a_actores_vivos(mat_actores, names_actores, awards_actores
 # Funciones de EJERCICIO D
 def desvincular_actores(mat_peliculas, mat_actores, apellidos_actores):
     # Your Code HERE
-    # no me dio tiemp
+    # no me dio tiempo xd
     pass
 
 
