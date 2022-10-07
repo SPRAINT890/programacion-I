@@ -20,36 +20,90 @@ que está encendida si su interruptor particular está activado y además hay
 general.
 
 class Bombilla:
- interruptorGeneral ...; // interruptor general
- interruptorParticular ...; // interruptor particular
+    interruptorGeneral ...; // interruptor general
+    interruptorParticular ...; // interruptor particular
 
- def activaGeneral ()
- def desactivaGeneral ()
- def enciende ()
- def apaga ()
- def encendida () 
+def activaGeneral ()
+def desactivaGeneral ()
+def enciende ()
+def apaga ()
+def encendida () 
 """
 
 class Bombilla:
-    def __init__(self):
+    def __init__(self, numero):
+        self._numero = numero
         self._estado = False
+        self._corriente = False
     
-    #getter
+    #getter _estado
     def get_estado(self):
         return self._estado
     
-    #setters
-    def set_estado(self, c):
-        self._estado = c
+    #getter _numero
+    def get_numero(self):
+        return self._numero
+    
+    #getter _corriente
+    def get_corriente(self):
+        return self._corriente
+    
+    #setter _estado
+    def set_estado(self, v):
+        self._estado = v
+    
+    #setter _numero
+    def set_numero(self, v):
+        self._numero = v
+    
+    #setter _corriente
+    def set_corriente(self, v):
+        self._corriente = v
 
 if __name__ == '__main__':
     def activarGeneral(obj_list):
         for obj in obj_list:
-            obj.set_estado(True)
+            obj.set_corriente(True)
     
     def desactivarGeneral(obj_list):
         for obj in obj_list:
-            obj.set_estado(False)
+            obj.set_corriente(False)
     
-    def enciende()
-
+    def enciende(obj):
+        obj.set_estado(True)
+    
+    def apaga(obj):
+        obj.set_estado(False)
+    
+    def encendida(obj):
+        corriente = obj.get_corriente()
+        prendido = obj.get_estado()
+        
+        if corriente and not prendido or not corriente:
+            return False
+        else:
+            return True
+    
+    lista_bombillas = []
+    for i in range(10):
+        lista_bombillas.append(Bombilla(i))
+    
+    #prendo la general
+    activarGeneral(lista_bombillas)
+    
+    #prendo las luces
+    for bombilla in lista_bombillas:
+        enciende(bombilla)
+    
+    apaga(lista_bombillas[0])
+    apaga(lista_bombillas[4])
+    apaga(lista_bombillas[9])
+    
+    #desactivarGeneral(lista_bombillas)
+    
+    #verifico el estado
+    for bombilla in lista_bombillas:
+        if encendida(bombilla):
+            print("bombilla n° " + str(bombilla.get_numero()) + " esta prendida")
+        else:
+            print("bombilla n° " + str(bombilla.get_numero()) + " no esta prendida")
