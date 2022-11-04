@@ -19,11 +19,14 @@ usuario = input("1 - Listar Habitaciones \n2 - elegir habitacion \n3 - exit\n")
 while int(usuario) != 3:
     match int(usuario):
         case 1:
-            print("\n" * 130)
+            print("\n" * 20)
             print(listaHabitaciones(casaRural))
             usuario = input("\n1 - Listar Habitaciones \n2 - elegir habitacion \n3 - exit\n")
         case 2:
-            print("\n" * 130)
+            print("\n" * 20)
             habitacion = input("numero de habitacion: ")
             mostrarHabitacion(int(habitacion), casaRural)
+            usuario = input("\n1 - Listar Habitaciones \n2 - elegir habitacion \n3 - exit\n")
+        case other:
+            print("\n" * 20 + "Valor incorrecto" + "\n")
             usuario = input("\n1 - Listar Habitaciones \n2 - elegir habitacion \n3 - exit\n")
