@@ -1,0 +1,2 @@
+class ContenidoInvalido(Exception):
+    pass
