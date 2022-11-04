@@ -3,7 +3,10 @@ from exceptions.ContenidoInvalido import ContenidoInvalido
 class Episodio:
     def __init__(self, temporada, numero, nombre) -> None:
         if temporada is None or numero is None or nombre is None:
-            raise ContenidoInvalido("Este episodio tiene algun valor Invalido")
+            try:
+                raise ContenidoInvalido("Este episodio tiene algun valor Invalido")
+            except Exception as error :
+                print(error)
         self._temporada = temporada
         self._numero = numero
         self._nombre = nombre

@@ -33,13 +33,19 @@ class PortalContenido:
     def crear_pelicula(self, nombre, generos, anio):
         for contenido in self._contenidos:
             if contenido.nombre == nombre:
-                raise ContenidoYaExiste("Esta Pelicula ya existe")
+                try:
+                    raise ContenidoYaExiste("Esta Pelicula ya existe")
+                except Exception as error :
+                    print(error)
         self._contenidos.append(Pelicula(nombre, generos, anio))
 
     def crear_serie(self, nombre, generos):
         for contenido in self._contenidos:
             if contenido.nombre == nombre:
-                raise ContenidoYaExiste("Esta Serie ya existe")
+                try:
+                    raise ContenidoYaExiste("Esta Serie ya existe")
+                except Exception as error :
+                    print(error)
         self._contenidos.append(Serie(nombre, generos))
 
     def agregar_episodio_serie(self, nombre_serie, numero_temporada, numero_episodio, nombre_episodio):
@@ -53,12 +59,18 @@ class PortalContenido:
                 else:
                     for episodio in serie.episodios:
                         if episodio.nombre == nombre_episodio:
-                            raise ContenidoYaExiste("Este episodio ya existe")
+                            try:
+                                raise ContenidoYaExiste("Este episodio ya existe")
+                            except Exception as error :
+                                print(error)
                     serie.episodios.append(Episodio(numero_temporada, numero_episodio, nombre_episodio))
                     existe_serie = True
 
         if not existe_serie:
-            raise ContenidoNoExiste("Esta serie no existe")
+            try:
+                raise ContenidoNoExiste("Esta serie no existe")
+            except Exception as error :
+                print(error)
         
     def visualizar_contenido(self, email_usuario, nombre_contenido):
         existe_usuario = False
@@ -69,7 +81,10 @@ class PortalContenido:
                 contenido_visto = contenido
                 existe_contenido = True
         if not existe_contenido:
-            raise ContenidoNoExiste("Esta serie o Pelicula no esta registrado")
+            try:
+                raise ContenidoNoExiste("Esta serie o Pelicula no esta registrado")
+            except Exception as error :
+                print(error)
         
         
         for usuario in self._usuarios:
@@ -87,9 +102,9 @@ class PortalContenido:
 if __name__ == '__main__':
     netflix = PortalContenido()
     # Primera Funcion
-    netflix.crear_pelicula("Matrix", ["Ciencia Ficcion", "+18", "Drogas"], 1999)
+    # netflix.crear_pelicula("Matrix", ["Ciencia Ficcion", "+18", "Drogas"], 1999)
     # netflix.crear_pelicula("Matrix", ["Ciencia Ficcion", "romance"], 2022)
-    # netflix.crear_pelicula("Matrix", None, 2022)
+    netflix.crear_pelicula("Matrix", None, 2022)
 
     # Segunda Funcion
     netflix.crear_serie("Better Call Saul", ["Abogados", "Pollo Frito"])

@@ -3,8 +3,11 @@ from exceptions.ContenidoInvalido import ContenidoInvalido
 
 class Pelicula(Contenido):
     def __init__(self, nombre, genero, anio):
-        if len(nombre) == 0 or len(genero) == 0 or anio < 1895:
-            raise ContenidoInvalido("Esta Pelicula tiene algun valor Invalido")
+        if nombre is None or genero is None or anio < 1895:
+            try:
+                raise ContenidoInvalido("Esta Pelicula tiene algun valor Invalido")
+            except Exception as error :
+                print(error)
         super().__init__(nombre, genero)
         self._anio = anio
     
