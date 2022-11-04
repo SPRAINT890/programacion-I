@@ -1,0 +1,2 @@
+class ContenidoNoExiste(Exception):
+    pass
